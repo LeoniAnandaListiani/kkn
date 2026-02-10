@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Ultimate Recap KKN PLP 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    background-size:400% 400%;
+    animation:gradientMove 15s ease infinite;
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+@keyframes gradientMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+/* BINTANG */
+#stars{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+/* OPENING */
+.opening{
+position:fixed;
+top:0; left:0; width:100%; height:100vh;
+background:black;
+display:flex; flex-direction:column; justify-content:center; align-items:center;
+z-index:9999;
+}
+.opening h1{
+font-size:4rem;
+background:linear-gradient(45deg,#ff4e50,#f9d423);
+-webkit-background-clip:text;
+color:transparent;
+animation:glow 2s infinite alternate;
+}
+.opening p{margin-top:20px; opacity:0.8;}
+.opening button{
+margin-top:40px; padding:15px 40px; border:none; border-radius:40px;
+background:#ff4e50; color:white; cursor:pointer; transition:0.3s;}
+.opening button:hover{transform:scale(1.1); box-shadow:0 0 30px #ff4e50;}
+@keyframes glow{from{text-shadow:0 0 10px #ff4e50;} to{text-shadow:0 0 30px #f9d423;}}
+
+/* MAIN */
+.main{display:none; padding:60px 20px;}
+
+/* SLIDER */
+.slider{
+position:relative; max-width:900px; height:500px; margin:40px auto;
+overflow:hidden; border-radius:25px; box-shadow:0 15px 40px rgba(0,0,0,0.5);
+}
+.slide{
+position:absolute; width:100%; height:100%; object-fit:cover; opacity:0;
+transition:opacity 1s;
+}
+.slide.active{opacity:1;}
+.prev,.next{
+position:absolute; top:50%; transform:translateY(-50%);
+background:rgba(0,0,0,0.5); border:none; color:white;
+font-size:2rem; padding:10px 20px; border-radius:50%; cursor:pointer;
+}
+.prev{left:20px;} .next{right:20px;}
+
+/* VIDEO GRID */
+.video-grid{
+display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px; margin-top:60px;
+}
+.video-card{
+overflow:hidden; border-radius:20px; cursor:pointer;
+transition:0.4s; box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+.video-card video{width:100%; height:200px; object-fit:cover;}
+.video-card:hover{transform:scale(1.08);}
+.video-title{padding:15px; background:#000; font-weight:bold;}
+
+/* VIDEO POPUP */
+.video-popup{
+position:fixed; top:0; left:0; width:100%; height:100vh;
+background:rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:9999;
+}
+.video-popup video{width:80%; max-width:900px; border-radius:20px;}
+.close-video{position:absolute; top:30px; right:40px; font-size:2rem; cursor:pointer;}
+
+/* QUOTES */
+.quote{margin-top:80px; font-size:1.5rem; font-style:italic; min-height:60px;}
+
+/* ENDING */
+.ending{margin-top:120px; padding:100px 20px; background:linear-gradient(to right,#141e30,#243b55);}
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<audio id="bgm" src="sound.mp3" loop></audio>
+
+<div class="opening" id="opening">
+<h1>KKN PLP 2025</h1>
+<p>3 Bulan yang Ga Akan Terulang 🤍</p>
+<button onclick="start()">MULAI PERJALANAN 🎬</button>
+</div>
+
+<div class="main" id="main">
+
+<h2>Galeri Kenangan 📸</h2>
+<div class="slider">
+<img src="foto/1 (1).jpeg" class="slide active">
+<img src="foto/1 (2).jpeg" class="slide">
+<img src="foto/1 (3).jpeg" class="slide">
+<img src="foto/1 (4).jpeg" class="slide">
+<img src="foto/1 (5).jpeg" class="slide">
+<img src="foto/1 (6).jpeg" class="slide">
+<img src="foto/1 (7).jpeg" class="slide">
+<img src="foto/1 (8).jpeg" class="slide">
+<img src="foto/1 (9).jpeg" class="slide">
+<img src="foto/1 (10).jpeg" class="slide">
+<button class="prev" onclick="prevSlide()">❮</button>
+<button class="next" onclick="nextSlide()">❯</button>
+</div>
+
+<h2>Video Perjalanan 🎬</h2>
+<div class="video-grid">
+<div class="video-card" onclick="openVideo('video/recap1.mp4')">
+<video src="foto/vid 1.mp4" muted></video>
+<div class="video-title">Opening 🔥</div>
+</div>
+<div class="video-card" onclick="openVideo('video/recap2.mp4')">
+<video src="video/recap2.mp4" muted></video>
+<div class="video-title">Momen Seru 😆</div>
+</div>
+<div class="video-card" onclick="openVideo('video/recap3.mp4')">
+<video src="video/recap3.mp4" muted></video>
+<div class="video-title">Perpisahan 🥹</div>
+</div>
+</div>
+
+<div class="quote" id="quoteText"></div>
+
+<div class="ending">
+Terima kasih sudah menjadi bagian dari cerita ini 🤍  
+Jika suatu hari kita rindu, buka kembali halaman ini.
+</div>
+</div>
+
+<div class="video-popup" id="videoPopup">
+<span class="close-video" onclick="closeVideo()">✖</span>
+<video id="popupVideo" controls autoplay></video>
+</div>
+
+<script>
+/* STARS */
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let stars=[];
+for(let i=0;i<200;i++){
+stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,radius:Math.random()*2,velocity:Math.random()*0.5});
+}
+function drawStars(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="white";
+stars.forEach(star=>{
+ctx.beginPath();
+ctx.arc(star.x,star.y,star.radius,0,Math.PI*2);
+ctx.fill();
+star.y+=star.velocity;
+if(star.y>canvas.height){star.y=0; star.x=Math.random()*canvas.width;}
+});
+requestAnimationFrame(drawStars);
+}
+drawStars();
+
+/* START */
+function start(){
+document.getElementById("opening").style.display="none";
+document.getElementById("main").style.display="block";
+document.getElementById("bgm").play();
+}
+
+/* SLIDER */
+let slides=document.querySelectorAll(".slide"); let current=0;
+function showSlide(index){slides[current].classList.remove("active"); current=index; slides[current].classList.add("active");}
+function nextSlide(){showSlide((current+1)%slides.length);}
+function prevSlide(){showSlide((current-1+slides.length)%slides.length);}
+setInterval(nextSlide,8000);
+
+/* VIDEO POPUP */
+function openVideo(src){const popup=document.getElementById("videoPopup"); const video=document.getElementById("popupVideo"); video.src=src; popup.style.display="flex";}
+function closeVideo(){const popup=document.getElementById("videoPopup"); const video=document.getElementById("popupVideo"); video.pause(); video.src=""; popup.style.display="none";}
+
+/* QUOTES */
+const quotes=[
+"Kita datang sebagai mahasiswa, pulang sebagai keluarga.",
+"Capeknya hilang, kenangannya tetap tinggal.",
+"3 bulan yang penuh cerita dan tawa.",
+"Bukan tempatnya yang spesial, tapi orang-orangnya.",
+"Kita pernah sehebat ini bersama."
+];
+let q=0;
+function changeQuote(){document.getElementById("quoteText").innerText=quotes[q]; q=(q+1)%quotes.length;}
+setInterval(changeQuote,3000);
+changeQuote();
+</script>
+
+</body>
+</html>
