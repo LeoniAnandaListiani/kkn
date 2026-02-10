@@ -1,279 +1,260 @@
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-    background:black;
-    color:white;
-    overflow-x:hidden;
-    text-align:center;
+background:black;
+color:white;
+overflow-x:hidden;
+text-align:center;
 }
 
 /* CANVAS BINTANG */
 #stars{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:-1; /* HARUS -1 */
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
 }
 
-/* =========================
-   OPENING
-========================= */
-
+/* OPENING */
 .opening{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100vh;
-    background:black;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:black;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:9999;
 }
 
 .opening h1{
-    font-size:4rem;
-    font-weight:800;
-    background:linear-gradient(45deg,#ff4e50,#f9d423);
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:glow 2s infinite alternate;
+font-size:4rem;
+font-weight:800;
+background:linear-gradient(45deg,#ff4e50,#f9d423);
+-webkit-background-clip:text;
+color:transparent;
+animation:glow 2s infinite alternate;
 }
 
 .opening p{
-    margin-top:20px;
-    font-size:1.2rem;
-    opacity:0.8;
+margin-top:20px;
+font-size:1.2rem;
+opacity:0.8;
 }
 
 .opening button{
-    margin-top:40px;
-    padding:15px 45px;
-    border:none;
-    border-radius:50px;
-    background:#ff4e50;
-    color:white;
-    font-size:1rem;
-    cursor:pointer;
-    transition:0.3s;
+margin-top:40px;
+padding:15px 45px;
+border:none;
+border-radius:50px;
+background:#ff4e50;
+color:white;
+font-size:1rem;
+cursor:pointer;
+transition:0.3s;
 }
 
 .opening button:hover{
-    transform:scale(1.1);
-    box-shadow:0 0 30px #ff4e50;
+transform:scale(1.1);
+box-shadow:0 0 30px #ff4e50;
 }
 
 @keyframes glow{
-    from{text-shadow:0 0 10px #ff4e50;}
-    to{text-shadow:0 0 40px #f9d423;}
+from{text-shadow:0 0 10px #ff4e50;}
+to{text-shadow:0 0 40px #f9d423;}
 }
 
-/* =========================
-   MAIN SECTION
-========================= */
-
+/* MAIN */
 .main{
-    display:none;
-    padding:80px 20px;
+display:none;
+padding:80px 20px;
 }
 
 /* =========================
-   SLIDER FOTO
+   SLIDER FOTO — FIX TOTAL
 ========================= */
 
 .slider{
 position:relative;
-width:900px;          /* ukuran kotak */
+width:900px;
 height:500px;
 margin:40px auto;
 overflow:hidden;
 border-radius:25px;
 box-shadow:0 15px 40px rgba(0,0,0,0.5);
-display:flex;
-justify-content:center;
-align-items:center;
+background:black;
 }
 
 .slide{
 position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-object-fit:contain;        /* foto utuh */
-object-position:center;    /* FOTO DI TENGAH */
+top:50%;
+left:50%;
+max-width:100%;
+max-height:100%;
+width:auto;
+height:auto;
+transform:translate(-50%,-50%);
 opacity:0;
 transition:opacity 1s;
-background:black;          /* sisi kosong jadi rapi */
+display:block;
 }
 
 .slide.active{
-    opacity:1;
+opacity:1;
 }
-
 
 /* BUTTON SLIDER */
 
 .prev,.next{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    background:rgba(0,0,0,0.6);
-    border:none;
-    color:white;
-    font-size:2rem;
-    padding:10px 20px;
-    border-radius:50%;
-    cursor:pointer;
-    transition:0.3s;
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:rgba(0,0,0,0.6);
+border:none;
+color:white;
+font-size:2rem;
+padding:10px 20px;
+border-radius:50%;
+cursor:pointer;
+transition:0.3s;
 }
 
 .prev:hover,.next:hover{
-    background:#ff4e50;
+background:#ff4e50;
 }
 
 .prev{left:20px;}
 .next{right:20px;}
 
-/* =========================
-   VIDEO GRID
-========================= */
+/* VIDEO GRID */
 
 .video-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-    margin-top:80px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:80px;
 }
 
 .video-card{
-    position:relative;
-    overflow:hidden;
-    border-radius:25px;
-    cursor:pointer;
-    transition:0.4s;
-    box-shadow:0 15px 40px rgba(0,0,0,0.5);
+position:relative;
+overflow:hidden;
+border-radius:25px;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 15px 40px rgba(0,0,0,0.5);
 }
 
 .video-card video{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    filter:brightness(0.8);
-    transition:0.4s;
+width:100%;
+height:220px;
+object-fit:cover;
+filter:brightness(0.8);
+transition:0.4s;
 }
 
 .video-card:hover{
-    transform:scale(1.08);
+transform:scale(1.08);
 }
 
 .video-card:hover video{
-    filter:brightness(1);
+filter:brightness(1);
 }
 
 .video-title{
-    position:absolute;
-    bottom:0;
-    width:100%;
-    padding:15px;
-    background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);
-    text-align:left;
-    font-weight:600;
+position:absolute;
+bottom:0;
+width:100%;
+padding:15px;
+background:linear-gradient(to top,rgba(0,0,0,0.8),transparent);
+text-align:left;
+font-weight:600;
 }
 
-/* =========================
-   VIDEO POPUP
-========================= */
+/* VIDEO POPUP */
 
 .video-popup{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100vh;
-    background:rgba(0,0,0,0.95);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:rgba(0,0,0,0.95);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:9999;
 }
 
 .video-popup video{
-    width:80%;
-    max-width:1000px;
-    border-radius:25px;
+width:80%;
+max-width:1000px;
+border-radius:25px;
 }
 
 .close-video{
-    position:absolute;
-    top:30px;
-    right:40px;
-    font-size:2rem;
-    cursor:pointer;
-    transition:0.3s;
+position:absolute;
+top:30px;
+right:40px;
+font-size:2rem;
+cursor:pointer;
+transition:0.3s;
 }
 
 .close-video:hover{
-    color:#ff4e50;
-    transform:scale(1.2);
+color:#ff4e50;
+transform:scale(1.2);
 }
 
-/* =========================
-   QUOTES
-========================= */
+/* QUOTES */
 
 .quote{
-    margin-top:100px;
-    font-size:1.6rem;
-    font-style:italic;
-    min-height:80px;
-    padding:0 20px;
-    animation:fadeIn 1s ease;
+margin-top:100px;
+font-size:1.6rem;
+font-style:italic;
+min-height:80px;
+padding:0 20px;
+animation:fadeIn 1s ease;
 }
 
-/* =========================
-   ENDING
-========================= */
+/* ENDING */
 
 .ending{
-    margin-top:120px;
-    padding:120px 20px;
-    background:linear-gradient(to right,#141e30,#243b55);
-    font-size:1.2rem;
+margin-top:120px;
+padding:120px 20px;
+background:linear-gradient(to right,#141e30,#243b55);
+font-size:1.2rem;
 }
 
-/* =========================
-   ANIMATIONS
-========================= */
-
 @keyframes fadeIn{
-    from{opacity:0; transform:translateY(30px);}
-    to{opacity:1; transform:translateY(0);}
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 /* RESPONSIVE */
 
 @media(max-width:768px){
 
-    .opening h1{
-        font-size:2.5rem;
-    }
+.opening h1{
+font-size:2.5rem;
+}
 
-    .slider{
-        height:300px;
-    }
+.slider{
+width:95%;
+height:300px;
+}
 
-    .video-card video{
-        height:180px;
-    }
+.video-card video{
+height:180px;
+}
 
 }
